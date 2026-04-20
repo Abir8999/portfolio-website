@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useEffect } from "react";
-import { motion, useScroll, useSpring } from "motion/react";
+import { useEffect, useState } from "react";
+import { motion, useScroll, useSpring, AnimatePresence } from "motion/react";
 import { Instagram, Linkedin, ExternalLink, ArrowRight, Mail, Layers, PenTool, MapPin } from "lucide-react";
 
 const portfolioItems = [
@@ -37,10 +37,85 @@ const portfolioItems = [
     link: "#",
     project: "03",
     featured: true
+  },
+  {
+    id: 4,
+    title: "Fitness App Social Kit",
+    category: "Social Media",
+    image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800&auto=format&fit=crop",
+    project: "04",
+    featured: false
+  },
+  {
+    id: 5,
+    title: "Event Flyer Design",
+    category: "Prints",
+    image: "https://images.unsplash.com/photo-1541746972996-4e0b0f43e01a?q=80&w=800&auto=format&fit=crop",
+    project: "05",
+    featured: false
+  },
+  {
+    id: 6,
+    title: "Minimalist Brand Identity",
+    category: "Branding",
+    image: "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=800&auto=format&fit=crop",
+    project: "06",
+    featured: false
+  },
+  {
+    id: 7,
+    title: "Tech Conference Socials",
+    category: "Social Media",
+    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=800&auto=format&fit=crop",
+    project: "07",
+    featured: false
+  },
+  {
+    id: 8,
+    title: "Visual Poster Series",
+    category: "Prints",
+    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=800&auto=format&fit=crop",
+    project: "08",
+    featured: false
+  },
+  {
+    id: 9,
+    title: "Restaurant Menu Design",
+    category: "Prints",
+    image: "https://images.unsplash.com/photo-1590073242678-70ee3fc28e84?q=80&w=800&auto=format&fit=crop",
+    project: "09",
+    featured: false
+  },
+  {
+    id: 10,
+    title: "E-commerce Social Ads",
+    category: "Social Media",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
+    project: "10",
+    featured: false
+  },
+  {
+    id: 11,
+    title: "App Icon Set",
+    category: "Branding",
+    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop",
+    project: "11",
+    featured: false
+  },
+  {
+    id: 12,
+    title: "Music Festival Branding",
+    category: "Branding",
+    image: "https://images.unsplash.com/photo-1459749411177-042180ce673c?q=80&w=800&auto=format&fit=crop",
+    project: "12",
+    featured: false
   }
 ];
 
+const categories = ["All", "Social Media", "Branding", "Prints"];
+
 export default function App() {
+  const [activeCategory, setActiveCategory] = useState("All");
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 150,
@@ -136,7 +211,7 @@ export default function App() {
           </div>
 
           <div className="space-y-40">
-            {portfolioItems.map((item, index) => (
+            {portfolioItems.filter(item => item.featured).map((item, index) => (
               <div
                 key={item.id}
                 className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-12 md:gap-24 items-center reveal`}
@@ -182,6 +257,63 @@ export default function App() {
                 </div>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* Gallery Section */}
+        <section id="gallery" className="pb-40 px-8 md:px-20 reveal">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
+              <div>
+                <span className="text-[10px] uppercase tracking-[0.3em] text-white/40 block mb-4">Complete Archive</span>
+                <h2 className="text-4xl md:text-5xl font-bold uppercase tracking-tighter">More Designs</h2>
+              </div>
+              
+              <div className="flex flex-wrap gap-4 md:gap-8">
+                {categories.map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => setActiveCategory(cat)}
+                    className={`text-[10px] uppercase tracking-[0.2em] font-bold pb-2 border-b-2 transition-all duration-300 ${
+                      activeCategory === cat ? 'border-white text-white' : 'border-transparent text-white/30 hover:text-white/60'
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              <AnimatePresence mode="popLayout">
+                {portfolioItems
+                  .filter((item) => activeCategory === "All" || item.category === activeCategory)
+                  .map((item) => (
+                    <motion.div
+                      layout
+                      key={item.id}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.9 }}
+                      transition={{ duration: 0.4 }}
+                      className="group relative"
+                    >
+                      <div className="aspect-[4/5] overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          referrerPolicy="no-referrer"
+                          className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity p-8 flex flex-col justify-end">
+                          <span className="text-[10px] uppercase tracking-widest text-white/60 mb-2 truncate">{item.category}</span>
+                          <h4 className="text-lg font-bold uppercase leading-tight">{item.title}</h4>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+              </AnimatePresence>
+            </div>
           </div>
         </section>
 
