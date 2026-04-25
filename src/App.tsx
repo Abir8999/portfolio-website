@@ -9,24 +9,44 @@ import { Instagram, Linkedin, ExternalLink, ArrowRight, Mail, Layers, PenTool, M
 
 const portfolioItems = [
   {
-    id: 1,
-    title: "Coffee Ad Design – Lume Cafe",
+    id: 13,
+    title: "Luxury Skincare Product Ad – VELORA",
     category: "Social Media",
-    description: "High-impact visual design for premium coffee branding, focusing on rich textures and bold typography.",
-    image: "https://i.postimg.cc/28Z75Bwx/Lume-cafe-jpg.jpg",
-    link: "https://www.instagram.com/p/DXI64WnFHr5/",
+    description: "Premium skincare advertisement design focused on luxury branding, product presentation, and high-converting commercial visuals with a clean modern aesthetic.",
+    image: "https://i.postimg.cc/k5whBWHW/velora-skincare.jpg",
+    link: "https://i.postimg.cc/k5whBWHW/velora-skincare.jpg",
     project: "01",
+    featured: true
+  },
+  {
+    id: 14,
+    title: "Luxury Fashion Campaign – AUREL Studio",
+    category: "Social Media",
+    description: "Minimal luxury fashion campaign design for a premium streetwear brand, focused on editorial composition, clean typography, and high-end brand presentation.",
+    image: "https://i.postimg.cc/SKNbTQFH/AUREL-studio-v-1.jpg",
+    link: "https://i.postimg.cc/SKNbTQFH/AUREL-studio-v-1.jpg",
+    project: "02",
     featured: true
   },
   {
     id: 2,
     title: "Zesta Juice Bar – Poster Design",
     category: "Social Media",
-    description: "A clean and modern Instagram advertisement created to promote Orange Blast Juice. The design focuses on strong visual hierarchy, vibrant color usage, and a minimal layout to highlight freshness and energy while maintaining a professional look.",
+    description: "Bright commercial beverage advertisement created for strong product visibility, vibrant brand presence, and effective promotional marketing design.",
     image: "https://i.postimg.cc/4yS2nMYK/zesta-final.jpg",
     link: "https://i.postimg.cc/4yS2nMYK/zesta-final.jpg",
-    project: "02",
+    project: "03",
     featured: true
+  },
+  {
+    id: 1,
+    title: "Coffee Ad Design – Lume Cafe",
+    category: "Social Media",
+    description: "High-impact visual design for premium coffee branding, focusing on rich textures and bold typography.",
+    image: "https://i.postimg.cc/28Z75Bwx/Lume-cafe-jpg.jpg",
+    link: "https://www.instagram.com/p/DXI64WnFHr5/",
+    project: "04",
+    featured: false
   },
   {
     id: 3,
@@ -35,15 +55,15 @@ const portfolioItems = [
     description: "Complete visual identity system for an organic juice brand, emphasizing purity and natural ingredients.",
     image: "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?q=80&w=800&auto=format&fit=crop",
     link: "#",
-    project: "03",
-    featured: true
+    project: "05",
+    featured: false
   },
   {
     id: 4,
     title: "Fitness App Social Kit",
     category: "Social Media",
     image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800&auto=format&fit=crop",
-    project: "04",
+    project: "06",
     featured: false
   },
   {
@@ -51,7 +71,7 @@ const portfolioItems = [
     title: "Event Flyer Design",
     category: "Prints",
     image: "https://images.unsplash.com/photo-1541746972996-4e0b0f43e01a?q=80&w=800&auto=format&fit=crop",
-    project: "05",
+    project: "07",
     featured: false
   },
   {
@@ -59,7 +79,7 @@ const portfolioItems = [
     title: "Minimalist Brand Identity",
     category: "Branding",
     image: "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=800&auto=format&fit=crop",
-    project: "06",
+    project: "08",
     featured: false
   },
   {
@@ -67,7 +87,7 @@ const portfolioItems = [
     title: "Tech Conference Socials",
     category: "Social Media",
     image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=800&auto=format&fit=crop",
-    project: "07",
+    project: "09",
     featured: false
   },
   {
@@ -75,7 +95,7 @@ const portfolioItems = [
     title: "Visual Poster Series",
     category: "Prints",
     image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=800&auto=format&fit=crop",
-    project: "08",
+    project: "10",
     featured: false
   },
   {
@@ -83,7 +103,7 @@ const portfolioItems = [
     title: "Restaurant Menu Design",
     category: "Prints",
     image: "https://images.unsplash.com/photo-1590073242678-70ee3fc28e84?q=80&w=800&auto=format&fit=crop",
-    project: "09",
+    project: "11",
     featured: false
   },
   {
@@ -91,7 +111,7 @@ const portfolioItems = [
     title: "E-commerce Social Ads",
     category: "Social Media",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
-    project: "10",
+    project: "12",
     featured: false
   },
   {
@@ -99,7 +119,7 @@ const portfolioItems = [
     title: "App Icon Set",
     category: "Branding",
     image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop",
-    project: "11",
+    project: "13",
     featured: false
   },
   {
@@ -107,7 +127,7 @@ const portfolioItems = [
     title: "Music Festival Branding",
     category: "Branding",
     image: "https://images.unsplash.com/photo-1459749411177-042180ce673c?q=80&w=800&auto=format&fit=crop",
-    project: "12",
+    project: "14",
     featured: false
   }
 ];
