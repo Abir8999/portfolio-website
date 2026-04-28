@@ -29,24 +29,24 @@ const portfolioItems = [
     featured: true
   },
   {
+    id: 15,
+    title: "IRONCORE FITNESS STUDIO – GYM CAMPAIGN POSTER",
+    category: "Social Media",
+    description: "High-impact promotional fitness campaign designed for a premium gym brand focused on strength, discipline, and transformation. The design uses strong visual hierarchy, bold typography, dramatic lighting, and red-black contrast to create urgency and powerful brand presence.",
+    image: "https://i.postimg.cc/vBMNwY9n/ironcore-fitness-studio-v-2.jpg",
+    link: "https://i.postimg.cc/vBMNwY9n/ironcore-fitness-studio-v-2.jpg",
+    project: "03",
+    featured: true
+  },
+  {
     id: 2,
     title: "Zesta Juice Bar – Poster Design",
     category: "Social Media",
     description: "Bright commercial beverage advertisement created for strong product visibility, vibrant brand presence, and effective promotional marketing design.",
     image: "https://i.postimg.cc/4yS2nMYK/zesta-final.jpg",
     link: "https://i.postimg.cc/4yS2nMYK/zesta-final.jpg",
-    project: "03",
-    featured: true
-  },
-  {
-    id: 1,
-    title: "Coffee Ad Design – Lume Cafe",
-    category: "Social Media",
-    description: "High-impact visual design for premium coffee branding, focusing on rich textures and bold typography.",
-    image: "https://i.postimg.cc/28Z75Bwx/Lume-cafe-jpg.jpg",
-    link: "https://www.instagram.com/p/DXI64WnFHr5/",
     project: "04",
-    featured: false
+    featured: true
   },
   {
     id: 3,
