@@ -14,7 +14,7 @@ const portfolioItems = [
     category: "Social Media",
     description: "Premium skincare advertisement design focused on luxury branding, product presentation, and high-converting commercial visuals with a clean modern aesthetic.",
     image: "https://i.postimg.cc/k5whBWHW/velora-skincare.jpg",
-    link: "https://i.postimg.cc/k5whBWHW/velora-skincare.jpg",
+    link: "https://www.instagram.com/p/DXj3xUZDwCa/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
     project: "01",
     featured: true
   },
@@ -44,95 +44,23 @@ const portfolioItems = [
     category: "Social Media",
     description: "Bright commercial beverage advertisement created for strong product visibility, vibrant brand presence, and effective promotional marketing design.",
     image: "https://i.postimg.cc/4yS2nMYK/zesta-final.jpg",
-    link: "https://i.postimg.cc/4yS2nMYK/zesta-final.jpg",
+    link: "https://www.instagram.com/p/DXZhhtfD-8m/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
     project: "04",
     featured: true
   },
   {
-    id: 3,
-    title: "Organic Juice Branding – PureSip",
-    category: "Branding",
-    description: "Complete visual identity system for an organic juice brand, emphasizing purity and natural ingredients.",
-    image: "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?q=80&w=800&auto=format&fit=crop",
-    link: "#",
+    id: 16,
+    title: "YouTube Thumbnail Redesign – Is AI Stealing Your Job?",
+    category: "Social Media",
+    description: "A high-impact YouTube thumbnail redesign focused on maximizing click-through rates. The composition leverages strong typography and high-contrast color palettes to create immediate visual hierarchy. By balancing complex subject matter with an attention-grabbing layout, the design ensures readability even at smaller scales, driving viewer engagement through strategic composition.",
+    image: "https://i.postimg.cc/43jTwb5W/thumbnail-portfolio.png",
+    link: "https://i.postimg.cc/43jTwb5W/thumbnail-portfolio.png",
     project: "05",
-    featured: false
-  },
-  {
-    id: 4,
-    title: "Fitness App Social Kit",
-    category: "Social Media",
-    image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=800&auto=format&fit=crop",
-    project: "06",
-    featured: false
-  },
-  {
-    id: 5,
-    title: "Event Flyer Design",
-    category: "Prints",
-    image: "https://images.unsplash.com/photo-1541746972996-4e0b0f43e01a?q=80&w=800&auto=format&fit=crop",
-    project: "07",
-    featured: false
-  },
-  {
-    id: 6,
-    title: "Minimalist Brand Identity",
-    category: "Branding",
-    image: "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=800&auto=format&fit=crop",
-    project: "08",
-    featured: false
-  },
-  {
-    id: 7,
-    title: "Tech Conference Socials",
-    category: "Social Media",
-    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=800&auto=format&fit=crop",
-    project: "09",
-    featured: false
-  },
-  {
-    id: 8,
-    title: "Visual Poster Series",
-    category: "Prints",
-    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=800&auto=format&fit=crop",
-    project: "10",
-    featured: false
-  },
-  {
-    id: 9,
-    title: "Restaurant Menu Design",
-    category: "Prints",
-    image: "https://images.unsplash.com/photo-1590073242678-70ee3fc28e84?q=80&w=800&auto=format&fit=crop",
-    project: "11",
-    featured: false
-  },
-  {
-    id: 10,
-    title: "E-commerce Social Ads",
-    category: "Social Media",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
-    project: "12",
-    featured: false
-  },
-  {
-    id: 11,
-    title: "App Icon Set",
-    category: "Branding",
-    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop",
-    project: "13",
-    featured: false
-  },
-  {
-    id: 12,
-    title: "Music Festival Branding",
-    category: "Branding",
-    image: "https://images.unsplash.com/photo-1459749411177-042180ce673c?q=80&w=800&auto=format&fit=crop",
-    project: "14",
-    featured: false
+    featured: true
   }
 ];
 
-const categories = ["All", "Social Media", "Branding", "Prints"];
+const categories = ["All", "YouTube Thumbnails", "Social Media Posters", "Branding & Prints"];
 
 export default function App() {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -155,6 +83,15 @@ export default function App() {
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     return () => observer.disconnect();
   }, []);
+
+  const featuredItems = portfolioItems
+    .filter(item => item.featured)
+    .sort((a, b) => {
+      // Ensure YouTube Thumbnail (id 16) is on top
+      if (a.id === 16) return -1;
+      if (b.id === 16) return 1;
+      return a.project.localeCompare(b.project);
+    });
 
   return (
     <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black font-sans overflow-x-hidden">
@@ -231,7 +168,7 @@ export default function App() {
           </div>
 
           <div className="space-y-40">
-            {portfolioItems.filter(item => item.featured).map((item, index) => (
+            {featuredItems.map((item, index) => (
               <div
                 key={item.id}
                 className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-12 md:gap-24 items-center reveal`}
@@ -251,7 +188,6 @@ export default function App() {
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
                 </a>
                 <div className="w-full md:w-2/5">
-                  <span className="text-xs font-mono opacity-30 block mb-4">0{item.project}</span>
                   <a 
                     href={item.link} 
                     target="_blank" 
@@ -283,13 +219,15 @@ export default function App() {
         {/* Gallery Section */}
         <section id="gallery" className="pb-40 px-8 md:px-20 reveal">
           <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
+            
+            {/* Header */}
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-10">
               <div>
                 <span className="text-[10px] uppercase tracking-[0.3em] text-white/40 block mb-4">Complete Archive</span>
                 <h2 className="text-4xl md:text-5xl font-bold uppercase tracking-tighter">More Designs</h2>
               </div>
               
-              <div className="flex flex-wrap gap-4 md:gap-8">
+              <div className="flex flex-wrap gap-x-8 gap-y-4">
                 {categories.map((cat) => (
                   <button
                     key={cat}
@@ -304,10 +242,16 @@ export default function App() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className={`grid gap-8 ${activeCategory === "YouTube Thumbnails" ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"}`}>
               <AnimatePresence mode="popLayout">
                 {portfolioItems
-                  .filter((item) => activeCategory === "All" || item.category === activeCategory)
+                  .filter((item) => {
+                    if (activeCategory === "All") return true;
+                    if (activeCategory === "YouTube Thumbnails") return item.title.toLowerCase().includes('thumbnail');
+                    if (activeCategory === "Social Media Posters") return !item.title.toLowerCase().includes('thumbnail') && item.category === "Social Media";
+                    if (activeCategory === "Branding & Prints") return item.category === "Branding" || item.category === "Prints";
+                    return false;
+                  })
                   .map((item) => (
                     <motion.div
                       layout
@@ -318,22 +262,23 @@ export default function App() {
                       transition={{ duration: 0.4 }}
                       className="group relative"
                     >
-                      <div className="aspect-[4/5] overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+                      <div className={`${item.title.toLowerCase().includes('thumbnail') ? 'aspect-video' : 'aspect-[4/5]'} overflow-hidden rounded-2xl border border-white/10 bg-neutral-900 relative`}>
                         <img
                           src={item.image}
                           alt={item.title}
                           referrerPolicy="no-referrer"
-                          className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
+                          className="w-full h-full object-cover grayscale-[0.8] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
                         />
-                        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity p-8 flex flex-col justify-end">
-                          <span className="text-[10px] uppercase tracking-widest text-white/60 mb-2 truncate">{item.category}</span>
-                          <h4 className="text-lg font-bold uppercase leading-tight">{item.title}</h4>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 p-6 flex flex-col justify-end">
+                          <span className="text-[10px] uppercase tracking-[0.2em] text-white/50 mb-2">{item.category}</span>
+                          <h4 className="text-sm md:text-base font-bold uppercase leading-tight tracking-tight line-clamp-2">{item.title}</h4>
                         </div>
                       </div>
                     </motion.div>
                   ))}
               </AnimatePresence>
             </div>
+
           </div>
         </section>
 
