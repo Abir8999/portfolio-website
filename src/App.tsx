@@ -13,9 +13,19 @@ const portfolioItems = [
     title: "Luxury Skincare Product Ad – VELORA",
     category: "Social Media",
     description: "Premium skincare advertisement design focused on luxury branding, product presentation, and high-converting commercial visuals with a clean modern aesthetic.",
-    image: "https://i.postimg.cc/k5whBWHW/velora-skincare.jpg",
+    image: "https://i.postimg.cc/DwQWr71d/velora-v-2.jpg",
     link: "https://www.instagram.com/p/DXj3xUZDwCa/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
     project: "01",
+    featured: true
+  },
+  {
+    id: 17,
+    title: "Premium Headphone Campaign – AETHER",
+    category: "Social Media",
+    description: "High-end commercial advertisement design for AETHER premium headphones, focusing on sleek minimalist product staging, elegant dark aesthetic, and precise light-shadow contrast.",
+    image: "https://i.postimg.cc/y8NdZ0YR/aether-headphone-design.jpg",
+    link: "https://i.postimg.cc/y8NdZ0YR/aether-headphone-design.jpg",
+    project: "02",
     featured: true
   },
   {
@@ -25,7 +35,7 @@ const portfolioItems = [
     description: "Minimal luxury fashion campaign design for a premium streetwear brand, focused on editorial composition, clean typography, and high-end brand presentation.",
     image: "https://i.postimg.cc/SKNbTQFH/AUREL-studio-v-1.jpg",
     link: "https://i.postimg.cc/SKNbTQFH/AUREL-studio-v-1.jpg",
-    project: "02",
+    project: "03",
     featured: true
   },
   {
@@ -35,7 +45,7 @@ const portfolioItems = [
     description: "High-impact promotional fitness campaign designed for a premium gym brand focused on strength, discipline, and transformation. The design uses strong visual hierarchy, bold typography, dramatic lighting, and red-black contrast to create urgency and powerful brand presence.",
     image: "https://i.postimg.cc/vBMNwY9n/ironcore-fitness-studio-v-2.jpg",
     link: "https://i.postimg.cc/vBMNwY9n/ironcore-fitness-studio-v-2.jpg",
-    project: "03",
+    project: "04",
     featured: true
   },
   {
@@ -45,7 +55,7 @@ const portfolioItems = [
     description: "Bright commercial beverage advertisement created for strong product visibility, vibrant brand presence, and effective promotional marketing design.",
     image: "https://i.postimg.cc/4yS2nMYK/zesta-final.jpg",
     link: "https://www.instagram.com/p/DXZhhtfD-8m/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-    project: "04",
+    project: "05",
     featured: true
   },
   {
@@ -55,7 +65,7 @@ const portfolioItems = [
     description: "A high-impact YouTube thumbnail redesign focused on maximizing click-through rates. The composition leverages strong typography and high-contrast color palettes to create immediate visual hierarchy. By balancing complex subject matter with an attention-grabbing layout, the design ensures readability even at smaller scales, driving viewer engagement through strategic composition.",
     image: "https://i.postimg.cc/43jTwb5W/thumbnail-portfolio.png",
     link: "https://i.postimg.cc/43jTwb5W/thumbnail-portfolio.png",
-    project: "05",
+    project: "06",
     featured: true
   }
 ];
