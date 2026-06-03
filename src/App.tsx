@@ -5,7 +5,8 @@
 
 import { useEffect, useState } from "react";
 import { motion, useScroll, useSpring, AnimatePresence } from "motion/react";
-import { Instagram, Linkedin, ExternalLink, ArrowRight, Mail, Layers, PenTool, MapPin } from "lucide-react";
+import { Instagram, Linkedin, ExternalLink, ArrowRight, Mail, Layers, PenTool, MapPin, X, ChevronLeft, ChevronRight } from "lucide-react";
+import ProjectCarousel from "./components/ProjectCarousel";
 
 const portfolioItems = [
   {
@@ -19,13 +20,28 @@ const portfolioItems = [
     featured: true
   },
   {
+    id: 18,
+    title: "Luxury Residential Lifestyle Campaign",
+    category: "Social Media",
+    description: "A luxury residential campaign exploring wellness, community, and relaxation through premium visual storytelling.",
+    image: "https://i.postimg.cc/wBM7bg72/Artboard-1.jpg",
+    carouselImages: [
+      { title: "Your Morning Routine, Elevated", url: "https://i.postimg.cc/wBM7bg72/Artboard-1.jpg" },
+      { title: "Where Connections Happen", url: "https://i.postimg.cc/ncLbmzgL/Artboard-1-copy-2.jpg" },
+      { title: "Dive Into Tranquility", url: "https://i.postimg.cc/13CzF2vx/Artboard-1-copy.png" }
+    ],
+    link: "https://i.postimg.cc/wBM7bg72/Artboard-1.jpg",
+    project: "02",
+    featured: true
+  },
+  {
     id: 17,
     title: "Premium Headphone Campaign – AETHER",
     category: "Social Media",
     description: "High-end commercial advertisement design for AETHER premium headphones, focusing on sleek minimalist product staging, elegant dark aesthetic, and precise light-shadow contrast.",
     image: "https://i.postimg.cc/y8NdZ0YR/aether-headphone-design.jpg",
     link: "https://i.postimg.cc/y8NdZ0YR/aether-headphone-design.jpg",
-    project: "02",
+    project: "03",
     featured: true
   },
   {
@@ -35,7 +51,7 @@ const portfolioItems = [
     description: "Minimal luxury fashion campaign design for a premium streetwear brand, focused on editorial composition, clean typography, and high-end brand presentation.",
     image: "https://i.postimg.cc/SKNbTQFH/AUREL-studio-v-1.jpg",
     link: "https://i.postimg.cc/SKNbTQFH/AUREL-studio-v-1.jpg",
-    project: "03",
+    project: "04",
     featured: true
   },
   {
@@ -45,7 +61,7 @@ const portfolioItems = [
     description: "High-impact promotional fitness campaign designed for a premium gym brand focused on strength, discipline, and transformation. The design uses strong visual hierarchy, bold typography, dramatic lighting, and red-black contrast to create urgency and powerful brand presence.",
     image: "https://i.postimg.cc/vBMNwY9n/ironcore-fitness-studio-v-2.jpg",
     link: "https://i.postimg.cc/vBMNwY9n/ironcore-fitness-studio-v-2.jpg",
-    project: "04",
+    project: "05",
     featured: true
   },
   {
@@ -55,8 +71,38 @@ const portfolioItems = [
     description: "Bright commercial beverage advertisement created for strong product visibility, vibrant brand presence, and effective promotional marketing design.",
     image: "https://i.postimg.cc/4yS2nMYK/zesta-final.jpg",
     link: "https://www.instagram.com/p/DXZhhtfD-8m/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-    project: "05",
+    project: "06",
     featured: true
+  },
+  {
+    id: 19,
+    title: "Your Morning Routine, Elevated",
+    category: "Social Media",
+    description: "A luxury residential poster exploring wellness and morning routines.",
+    image: "https://i.postimg.cc/wBM7bg72/Artboard-1.jpg",
+    link: "https://i.postimg.cc/wBM7bg72/Artboard-1.jpg",
+    project: "07",
+    featured: false
+  },
+  {
+    id: 20,
+    title: "Where Connections Happen",
+    category: "Social Media",
+    description: "A luxury residential poster celebrating community and connection.",
+    image: "https://i.postimg.cc/ncLbmzgL/Artboard-1-copy-2.jpg",
+    link: "https://i.postimg.cc/ncLbmzgL/Artboard-1-copy-2.jpg",
+    project: "08",
+    featured: false
+  },
+  {
+    id: 21,
+    title: "Dive Into Tranquility",
+    category: "Social Media",
+    description: "A luxury residential poster highlighting relaxation and serenity.",
+    image: "https://i.postimg.cc/13CzF2vx/Artboard-1-copy.png",
+    link: "https://i.postimg.cc/13CzF2vx/Artboard-1-copy.png",
+    project: "09",
+    featured: false
   },
   {
     id: 16,
@@ -65,7 +111,7 @@ const portfolioItems = [
     description: "A high-impact YouTube thumbnail redesign focused on maximizing click-through rates. The composition leverages strong typography and high-contrast color palettes to create immediate visual hierarchy. By balancing complex subject matter with an attention-grabbing layout, the design ensures readability even at smaller scales, driving viewer engagement through strategic composition.",
     image: "https://i.postimg.cc/43jTwb5W/thumbnail-portfolio.png",
     link: "https://i.postimg.cc/43jTwb5W/thumbnail-portfolio.png",
-    project: "06",
+    project: "10",
     featured: true
   }
 ];
@@ -74,12 +120,39 @@ const categories = ["All", "YouTube Thumbnails", "Social Media Posters", "Brandi
 
 export default function App() {
   const [activeCategory, setActiveCategory] = useState("All");
+  const [lightboxData, setLightboxData] = useState<{
+    images: { url: string; title: string }[];
+    currentIndex: number;
+  } | null>(null);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 150,
     damping: 40,
     restDelta: 0.001
   });
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!lightboxData) return;
+      if (e.key === "Escape") {
+        setLightboxData(null);
+      } else if (e.key === "ArrowLeft") {
+        setLightboxData((prev) => {
+          if (!prev || prev.images.length <= 1) return prev;
+          const nextIndex = prev.currentIndex - 1 < 0 ? prev.images.length - 1 : prev.currentIndex - 1;
+          return { ...prev, currentIndex: nextIndex };
+        });
+      } else if (e.key === "ArrowRight") {
+        setLightboxData((prev) => {
+          if (!prev || prev.images.length <= 1) return prev;
+          const nextIndex = prev.currentIndex + 1 >= prev.images.length ? 0 : prev.currentIndex + 1;
+          return { ...prev, currentIndex: nextIndex };
+        });
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [lightboxData]);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -183,43 +256,77 @@ export default function App() {
                 key={item.id}
                 className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-12 md:gap-24 items-center reveal`}
               >
-                <a 
-                  href={item.link} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-full md:w-3/5 group cursor-pointer relative overflow-hidden"
-                >
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    referrerPolicy="no-referrer"
-                    className="w-full h-auto transition-transform duration-1000 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
-                </a>
+                {item.carouselImages ? (
+                  <div className="w-full md:w-3/5">
+                    <ProjectCarousel 
+                      images={item.carouselImages} 
+                      projectTitle={item.title} 
+                      onImageClick={(index) => setLightboxData({ 
+                        images: item.carouselImages.map(img => ({ url: img.url, title: `${item.title} - ${img.title}` })), 
+                        currentIndex: index 
+                      })}
+                    />
+                  </div>
+                ) : (
+                  <button 
+                    onClick={() => setLightboxData({
+                      images: [{ url: item.image, title: item.title }],
+                      currentIndex: 0
+                    })}
+                    className="w-full md:w-3/5 group cursor-pointer relative overflow-hidden rounded-[2rem] border border-white/10 text-left block"
+                  >
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      referrerPolicy="no-referrer"
+                      className="w-full h-auto transition-transform duration-1000 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
+                  </button>
+                )}
                 <div className="w-full md:w-2/5">
-                  <a 
-                    href={item.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="hover:opacity-70 transition-opacity"
+                  <button 
+                    onClick={() => {
+                      if (item.carouselImages) {
+                        setLightboxData({ 
+                          images: item.carouselImages.map(img => ({ url: img.url, title: `${item.title} - ${img.title}` })), 
+                          currentIndex: 0 
+                        });
+                      } else {
+                        setLightboxData({ 
+                          images: [{ url: item.image, title: item.title }], 
+                          currentIndex: 0 
+                        });
+                      }
+                    }}
+                    className="hover:opacity-70 transition-opacity text-left block"
                   >
                     <h3 className="text-3xl md:text-4xl font-bold uppercase tracking-tight mb-4">{item.title}</h3>
-                  </a>
+                  </button>
                   <p className="text-sm uppercase tracking-[0.2em] opacity-50 mb-6">{item.category}</p>
                   {item.description && (
                     <p className="text-white/60 font-light leading-relaxed mb-10 text-base md:text-lg">
                       {item.description}
                     </p>
                   )}
-                  <a 
-                    href={item.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
+                  <button 
+                    onClick={() => {
+                      if (item.carouselImages) {
+                        setLightboxData({ 
+                          images: item.carouselImages.map(img => ({ url: img.url, title: `${item.title} - ${img.title}` })), 
+                          currentIndex: 0 
+                        });
+                      } else {
+                        setLightboxData({ 
+                          images: [{ url: item.image, title: item.title }], 
+                          currentIndex: 0 
+                        });
+                      }
+                    }}
                     className="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-bold border-b border-white/20 pb-2 hover:border-white transition-colors"
                   >
-                    View Project <ExternalLink size={14} />
-                  </a>
+                    View Design <ArrowRight size={14} />
+                  </button>
                 </div>
               </div>
             ))}
@@ -256,6 +363,7 @@ export default function App() {
               <AnimatePresence mode="popLayout">
                 {portfolioItems
                   .filter((item) => {
+                    if (item.id === 18) return false;
                     if (activeCategory === "All") return true;
                     if (activeCategory === "YouTube Thumbnails") return item.title.toLowerCase().includes('thumbnail');
                     if (activeCategory === "Social Media Posters") return !item.title.toLowerCase().includes('thumbnail') && item.category === "Social Media";
@@ -270,7 +378,11 @@ export default function App() {
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.9 }}
                       transition={{ duration: 0.4 }}
-                      className="group relative"
+                      onClick={() => setLightboxData({
+                        images: [{ url: item.image, title: item.title }],
+                        currentIndex: 0
+                      })}
+                      className="group relative cursor-pointer"
                     >
                       <div className={`${item.title.toLowerCase().includes('thumbnail') ? 'aspect-video' : 'aspect-[4/5]'} overflow-hidden rounded-2xl border border-white/10 bg-neutral-900 relative`}>
                         <img
@@ -393,6 +505,100 @@ export default function App() {
           Visual Design Portfolio
         </div>
       </footer>
+
+      {/* Lightbox Modal */}
+      <AnimatePresence>
+        {lightboxData && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setLightboxData(null)}
+            className="fixed inset-0 bg-black/95 backdrop-blur-md z-50 flex flex-col items-center justify-center p-4 md:p-8 cursor-zoom-out"
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setLightboxData(null)}
+              className="absolute top-6 right-6 p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white hover:text-black hover:scale-105 transition-all text-white z-50 flex items-center justify-center cursor-pointer shadow-lg"
+              title="Close modal (Esc)"
+            >
+              <X size={20} />
+            </button>
+
+            {lightboxData.images.length > 1 && (
+              <>
+                {/* Left Navigation Arrow (Slide Icon) */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setLightboxData((prev) => {
+                      if (!prev) return null;
+                      const nextIndex = prev.currentIndex - 1 < 0 ? prev.images.length - 1 : prev.currentIndex - 1;
+                      return { ...prev, currentIndex: nextIndex };
+                    });
+                  }}
+                  className="absolute left-4 md:left-12 top-1/2 -translate-y-1/2 p-4 rounded-full bg-white/5 border border-white/10 hover:bg-white hover:text-black hover:scale-105 transition-all text-white z-50 flex items-center justify-center cursor-pointer shadow-lg"
+                  title="Previous poster (Arrow Left)"
+                >
+                  <ChevronLeft size={24} />
+                </button>
+
+                {/* Right Navigation Arrow (Slide Icon) */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setLightboxData((prev) => {
+                      if (!prev) return null;
+                      const nextIndex = prev.currentIndex + 1 >= prev.images.length ? 0 : prev.currentIndex + 1;
+                      return { ...prev, currentIndex: nextIndex };
+                    });
+                  }}
+                  className="absolute right-4 md:right-12 top-1/2 -translate-y-1/2 p-4 rounded-full bg-white/5 border border-white/10 hover:bg-white hover:text-black hover:scale-105 transition-all text-white z-50 flex items-center justify-center cursor-pointer shadow-lg"
+                  title="Next poster (Arrow Right)"
+                >
+                  <ChevronRight size={24} />
+                </button>
+              </>
+            )}
+
+            {/* Image Container with Title */}
+            <div 
+              className="relative max-w-full max-h-[85vh] flex flex-col items-center justify-center cursor-default gap-4"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <motion.img
+                key={lightboxData.images[lightboxData.currentIndex].url}
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.95, opacity: 0 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                src={lightboxData.images[lightboxData.currentIndex].url}
+                alt={lightboxData.images[lightboxData.currentIndex].title}
+                referrerPolicy="no-referrer"
+                className="max-w-[90vw] max-h-[75vh] md:max-h-[80vh] object-contain rounded-2xl border border-white/10 shadow-2xl"
+              />
+              <motion.div 
+                initial={{ y: 10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.1 }}
+                className="text-center px-4"
+              >
+                <h3 className="text-white text-base md:text-lg font-bold uppercase tracking-tight leading-tight line-clamp-1">
+                  {lightboxData.images[lightboxData.currentIndex].title}
+                </h3>
+                <p className="text-white/40 text-[10px] uppercase tracking-widest mt-1">
+                  {lightboxData.images.length > 1 ? (
+                    <span>Poster {lightboxData.currentIndex + 1} of {lightboxData.images.length}</span>
+                  ) : (
+                    <span>Abir Karmakar Portfolio</span>
+                  )}
+                </p>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
