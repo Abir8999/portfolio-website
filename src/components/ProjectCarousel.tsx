@@ -60,14 +60,26 @@ export default function ProjectCarousel({ images, projectTitle, onImageClick }: 
             animate="center"
             exit="exit"
             transition={{ type: "spring", stiffness: 350, damping: 30 }}
-            className="absolute inset-0 w-full h-full"
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.5}
+            onDragEnd={(e, info) => {
+              const swipe = info.offset.x;
+              if (swipe < -50) {
+                navigate(1);
+              } else if (swipe > 50) {
+                navigate(-1);
+              }
+            }}
+            onTap={() => onImageClick?.(currentIndex)}
+            className="absolute inset-0 w-full h-full cursor-grab active:cursor-grabbing select-none"
           >
             <img
               src={images[currentIndex].url}
               alt={`${projectTitle} - ${images[currentIndex].title}`}
               referrerPolicy="no-referrer"
-              className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700 cursor-pointer"
-              onClick={() => onImageClick?.(currentIndex)}
+              draggable="false"
+              className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700 pointer-events-none"
             />
             {/* Subtle Gradient Shadow */}
             <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none" />

@@ -39,8 +39,8 @@ const portfolioItems = [
     title: "Premium Headphone Campaign – AETHER",
     category: "Social Media",
     description: "High-end commercial advertisement design for AETHER premium headphones, focusing on sleek minimalist product staging, elegant dark aesthetic, and precise light-shadow contrast.",
-    image: "https://i.postimg.cc/y8NdZ0YR/aether-headphone-design.jpg",
-    link: "https://i.postimg.cc/y8NdZ0YR/aether-headphone-design.jpg",
+    image: "https://i.postimg.cc/m2B235Z5/aether-headphone-v-2-copy.jpg",
+    link: "https://i.postimg.cc/m2B235Z5/aether-headphone-v-2-copy.jpg",
     project: "03",
     featured: true
   },
@@ -573,10 +573,33 @@ export default function App() {
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.95, opacity: 0 }}
                 transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                drag={lightboxData.images.length > 1 ? "x" : false}
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.6}
+                onDragEnd={(e, info) => {
+                  if (lightboxData.images.length <= 1) return;
+                  const swipe = info.offset.x;
+                  if (swipe < -50) {
+                    setLightboxData((prev) => {
+                      if (!prev) return null;
+                      const nextIndex = prev.currentIndex + 1 >= prev.images.length ? 0 : prev.currentIndex + 1;
+                      return { ...prev, currentIndex: nextIndex };
+                    });
+                  } else if (swipe > 50) {
+                    setLightboxData((prev) => {
+                      if (!prev) return null;
+                      const nextIndex = prev.currentIndex - 1 < 0 ? prev.images.length - 1 : prev.currentIndex - 1;
+                      return { ...prev, currentIndex: nextIndex };
+                    });
+                  }
+                }}
                 src={lightboxData.images[lightboxData.currentIndex].url}
                 alt={lightboxData.images[lightboxData.currentIndex].title}
                 referrerPolicy="no-referrer"
-                className="max-w-[90vw] max-h-[75vh] md:max-h-[80vh] object-contain rounded-2xl border border-white/10 shadow-2xl"
+                draggable="false"
+                className={`max-w-[90vw] max-h-[75vh] md:max-h-[80vh] object-contain rounded-2xl border border-white/10 shadow-2xl select-none ${
+                  lightboxData.images.length > 1 ? "cursor-grab active:cursor-grabbing" : ""
+                }`}
               />
               <motion.div 
                 initial={{ y: 10, opacity: 0 }}
