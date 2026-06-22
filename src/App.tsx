@@ -105,13 +105,58 @@ const portfolioItems = [
     featured: false
   },
   {
+    id: 22,
+    title: "BVLGARI × ORLÉAN Luxury Watch Collection Campaign",
+    category: "Luxury Branding & Social Media Campaign",
+    description: "A luxury watch collection campaign inspired by Italian craftsmanship and French design, focusing on timeless elegance, exquisite details, and sophisticated product styling.",
+    image: "https://i.postimg.cc/nLq9sZLC/orlean-poster-1.jpg",
+    carouselImages: [
+      { title: "BVLGARI × ORLÉAN – Timeless Heritage", url: "https://i.postimg.cc/nLq9sZLC/orlean-poster-1.jpg" },
+      { title: "BVLGARI × ORLÉAN – Exquisite Precision", url: "https://i.postimg.cc/J4gsPtD7/orlean-poster-2.jpg" },
+      { title: "BVLGARI × ORLÉAN – Bold Sophistication", url: "https://i.postimg.cc/L6rsj7ws/orlean-poster-3.jpg" }
+    ],
+    link: "https://i.postimg.cc/nLq9sZLC/orlean-poster-1.jpg",
+    project: "07",
+    featured: true
+  },
+  {
+    id: 23,
+    title: "BVLGARI × ORLÉAN – Timeless Heritage",
+    category: "Luxury Branding & Social Media Campaign",
+    description: "Featured luxury branding poster from the BVLGARI × ORLÉAN campaign, highlighting Italian craftsmanship.",
+    image: "https://i.postimg.cc/nLq9sZLC/orlean-poster-1.jpg",
+    link: "https://i.postimg.cc/nLq9sZLC/orlean-poster-1.jpg",
+    project: "08",
+    featured: false
+  },
+  {
+    id: 24,
+    title: "BVLGARI × ORLÉAN – Exquisite Precision",
+    category: "Luxury Branding & Social Media Campaign",
+    description: "Featured luxury branding poster from the BVLGARI × ORLÉAN campaign, emphasizing Swiss movement and modern precision.",
+    image: "https://i.postimg.cc/J4gsPtD7/orlean-poster-2.jpg",
+    link: "https://i.postimg.cc/J4gsPtD7/orlean-poster-2.jpg",
+    project: "09",
+    featured: false
+  },
+  {
+    id: 25,
+    title: "BVLGARI × ORLÉAN – Bold Sophistication",
+    category: "Luxury Branding & Social Media Campaign",
+    description: "Featured luxury branding poster from the BVLGARI × ORLÉAN campaign, capturing sleek product staging and premium finishes.",
+    image: "https://i.postimg.cc/L6rsj7ws/orlean-poster-3.jpg",
+    link: "https://i.postimg.cc/L6rsj7ws/orlean-poster-3.jpg",
+    project: "10",
+    featured: false
+  },
+  {
     id: 16,
     title: "YouTube Thumbnail Redesign – Is AI Stealing Your Job?",
     category: "Social Media",
     description: "A high-impact YouTube thumbnail redesign focused on maximizing click-through rates. The composition leverages strong typography and high-contrast color palettes to create immediate visual hierarchy. By balancing complex subject matter with an attention-grabbing layout, the design ensures readability even at smaller scales, driving viewer engagement through strategic composition.",
     image: "https://i.postimg.cc/43jTwb5W/thumbnail-portfolio.png",
     link: "https://i.postimg.cc/43jTwb5W/thumbnail-portfolio.png",
-    project: "10",
+    project: "11",
     featured: true
   }
 ];
@@ -167,13 +212,13 @@ export default function App() {
     return () => observer.disconnect();
   }, []);
 
+  const featuredOrder = [13, 17, 22, 18, 14, 15, 2, 16];
   const featuredItems = portfolioItems
     .filter(item => item.featured)
     .sort((a, b) => {
-      // Ensure YouTube Thumbnail (id 16) is on top
-      if (a.id === 16) return -1;
-      if (b.id === 16) return 1;
-      return a.project.localeCompare(b.project);
+      const indexA = featuredOrder.indexOf(a.id);
+      const indexB = featuredOrder.indexOf(b.id);
+      return (indexA !== -1 ? indexA : 99) - (indexB !== -1 ? indexB : 99);
     });
 
   return (
@@ -363,11 +408,18 @@ export default function App() {
               <AnimatePresence mode="popLayout">
                 {portfolioItems
                   .filter((item) => {
-                    if (item.id === 18) return false;
+                    if (item.id === 18 || item.id === 22) return false;
                     if (activeCategory === "All") return true;
                     if (activeCategory === "YouTube Thumbnails") return item.title.toLowerCase().includes('thumbnail');
-                    if (activeCategory === "Social Media Posters") return !item.title.toLowerCase().includes('thumbnail') && item.category === "Social Media";
-                    if (activeCategory === "Branding & Prints") return item.category === "Branding" || item.category === "Prints";
+                    if (activeCategory === "Social Media Posters") {
+                      return !item.title.toLowerCase().includes('thumbnail') && 
+                        (item.category === "Social Media" || item.category.toLowerCase().includes("social media"));
+                    }
+                    if (activeCategory === "Branding & Prints") {
+                      return item.category === "Branding" || 
+                        item.category === "Prints" || 
+                        item.category.toLowerCase().includes("branding");
+                    }
                     return false;
                   })
                   .map((item) => (
