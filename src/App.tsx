@@ -39,8 +39,8 @@ const portfolioItems = [
     title: "Premium Headphone Campaign – AETHER",
     category: "Social Media",
     description: "High-end commercial advertisement design for AETHER premium headphones, focusing on sleek minimalist product staging, elegant dark aesthetic, and precise light-shadow contrast.",
-    image: "https://i.postimg.cc/m2B235Z5/aether-headphone-v-2-copy.jpg",
-    link: "https://i.postimg.cc/m2B235Z5/aether-headphone-v-2-copy.jpg",
+    image: "https://i.postimg.cc/W4QZjh48/aether-headphone-v-2.jpg",
+    link: "https://i.postimg.cc/W4QZjh48/aether-headphone-v-2.jpg",
     project: "03",
     featured: true
   },
@@ -109,13 +109,13 @@ const portfolioItems = [
     title: "BVLGARI × ORLÉAN Luxury Watch Collection Campaign",
     category: "Luxury Branding & Social Media Campaign",
     description: "A luxury watch collection campaign inspired by Italian craftsmanship and French design, focusing on timeless elegance, exquisite details, and sophisticated product styling.",
-    image: "https://i.postimg.cc/nLq9sZLC/orlean-poster-1.jpg",
+    image: "https://i.postimg.cc/NMSp3shL/orlean-poster-1.jpg",
     carouselImages: [
-      { title: "BVLGARI × ORLÉAN – Timeless Heritage", url: "https://i.postimg.cc/nLq9sZLC/orlean-poster-1.jpg" },
-      { title: "BVLGARI × ORLÉAN – Exquisite Precision", url: "https://i.postimg.cc/J4gsPtD7/orlean-poster-2.jpg" },
+      { title: "BVLGARI × ORLÉAN – Timeless Heritage", url: "https://i.postimg.cc/NMSp3shL/orlean-poster-1.jpg" },
+      { title: "BVLGARI × ORLÉAN – Exquisite Precision", url: "https://i.postimg.cc/brn3878S/orlean-poster-2.jpg" },
       { title: "BVLGARI × ORLÉAN – Bold Sophistication", url: "https://i.postimg.cc/L6rsj7ws/orlean-poster-3.jpg" }
     ],
-    link: "https://i.postimg.cc/nLq9sZLC/orlean-poster-1.jpg",
+    link: "https://i.postimg.cc/NMSp3shL/orlean-poster-1.jpg",
     project: "07",
     featured: true
   },
@@ -124,8 +124,8 @@ const portfolioItems = [
     title: "BVLGARI × ORLÉAN – Timeless Heritage",
     category: "Luxury Branding & Social Media Campaign",
     description: "Featured luxury branding poster from the BVLGARI × ORLÉAN campaign, highlighting Italian craftsmanship.",
-    image: "https://i.postimg.cc/nLq9sZLC/orlean-poster-1.jpg",
-    link: "https://i.postimg.cc/nLq9sZLC/orlean-poster-1.jpg",
+    image: "https://i.postimg.cc/NMSp3shL/orlean-poster-1.jpg",
+    link: "https://i.postimg.cc/NMSp3shL/orlean-poster-1.jpg",
     project: "08",
     featured: false
   },
@@ -134,8 +134,8 @@ const portfolioItems = [
     title: "BVLGARI × ORLÉAN – Exquisite Precision",
     category: "Luxury Branding & Social Media Campaign",
     description: "Featured luxury branding poster from the BVLGARI × ORLÉAN campaign, emphasizing Swiss movement and modern precision.",
-    image: "https://i.postimg.cc/J4gsPtD7/orlean-poster-2.jpg",
-    link: "https://i.postimg.cc/J4gsPtD7/orlean-poster-2.jpg",
+    image: "https://i.postimg.cc/brn3878S/orlean-poster-2.jpg",
+    link: "https://i.postimg.cc/brn3878S/orlean-poster-2.jpg",
     project: "09",
     featured: false
   },
