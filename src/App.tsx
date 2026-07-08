@@ -52,7 +52,7 @@ const portfolioItems = [
     image: "https://i.postimg.cc/SKNbTQFH/AUREL-studio-v-1.jpg",
     link: "https://i.postimg.cc/SKNbTQFH/AUREL-studio-v-1.jpg",
     project: "04",
-    featured: true
+    featured: false
   },
   {
     id: 15,
@@ -62,7 +62,7 @@ const portfolioItems = [
     image: "https://i.postimg.cc/vBMNwY9n/ironcore-fitness-studio-v-2.jpg",
     link: "https://i.postimg.cc/vBMNwY9n/ironcore-fitness-studio-v-2.jpg",
     project: "05",
-    featured: true
+    featured: false
   },
   {
     id: 2,
@@ -72,7 +72,7 @@ const portfolioItems = [
     image: "https://i.postimg.cc/4yS2nMYK/zesta-final.jpg",
     link: "https://www.instagram.com/p/DXZhhtfD-8m/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
     project: "06",
-    featured: true
+    featured: false
   },
   {
     id: 19,
@@ -222,7 +222,7 @@ export default function App() {
     return () => observer.disconnect();
   }, []);
 
-  const featuredOrder = [26, 13, 17, 22, 18, 14, 15, 2, 16];
+  const featuredOrder = [26, 13, 17, 22, 18, 16];
   const featuredItems = portfolioItems
     .filter(item => item.featured)
     .sort((a, b) => {
@@ -418,7 +418,7 @@ export default function App() {
               <AnimatePresence mode="popLayout">
                 {portfolioItems
                   .filter((item) => {
-                    if (item.id === 18 || item.id === 22) return false;
+                    if (![14, 15, 2].includes(item.id)) return false;
                     if (activeCategory === "All") return true;
                     if (activeCategory === "YouTube Thumbnails") return item.title.toLowerCase().includes('thumbnail');
                     if (activeCategory === "Social Media Posters") {
@@ -431,6 +431,17 @@ export default function App() {
                         item.category.toLowerCase().includes("branding");
                     }
                     return false;
+                  })
+                  .sort((a, b) => {
+                    const lastIds = [14, 15, 2];
+                    const aIsLast = lastIds.includes(a.id);
+                    const bIsLast = lastIds.includes(b.id);
+                    if (aIsLast && !bIsLast) return 1;
+                    if (!aIsLast && bIsLast) return -1;
+                    if (aIsLast && bIsLast) {
+                      return lastIds.indexOf(a.id) - lastIds.indexOf(b.id);
+                    }
+                    return 0;
                   })
                   .map((item) => (
                     <motion.div
