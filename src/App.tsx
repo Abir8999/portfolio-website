@@ -158,6 +158,16 @@ const portfolioItems = [
     link: "https://i.postimg.cc/43jTwb5W/thumbnail-portfolio.png",
     project: "11",
     featured: true
+  },
+  {
+    id: 26,
+    title: "Concept Advertisement Poster for LIC",
+    category: "Social Media",
+    description: "This self-initiated project explores how emotional storytelling can strengthen brand communication. The poster visualizes a father’s lasting presence in his son’s educational journey, reinforcing the message that life insurance helps protect a family’s future and aspirations. The design emphasizes visual hierarchy, balanced composition, and a clean, modern advertising style.",
+    image: "https://i.postimg.cc/sDWbJN1p/LIC-poster-v-2.jpg",
+    link: "https://i.postimg.cc/sDWbJN1p/LIC-poster-v-2.jpg",
+    project: "12",
+    featured: true
   }
 ];
 
@@ -212,7 +222,7 @@ export default function App() {
     return () => observer.disconnect();
   }, []);
 
-  const featuredOrder = [13, 17, 22, 18, 14, 15, 2, 16];
+  const featuredOrder = [26, 13, 17, 22, 18, 14, 15, 2, 16];
   const featuredItems = portfolioItems
     .filter(item => item.featured)
     .sort((a, b) => {
