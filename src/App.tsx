@@ -163,10 +163,20 @@ const portfolioItems = [
     id: 26,
     title: "Concept Advertisement Poster for LIC",
     category: "Social Media",
-    description: "This self-initiated project explores how emotional storytelling can strengthen brand communication. The poster visualizes a father’s lasting presence in his son’s educational journey, reinforcing the message that life insurance helps protect a family’s future and aspirations. The design emphasizes visual hierarchy, balanced composition, and a clean, modern advertising style.",
+    description: "A self-initiated concept poster exploring emotional storytelling in brand communication. It visualizes a father’s protective presence, highlighting how life insurance secures a family's future and educational aspirations through a clean, modern design.",
     image: "https://i.postimg.cc/sDWbJN1p/LIC-poster-v-2.jpg",
     link: "https://i.postimg.cc/sDWbJN1p/LIC-poster-v-2.jpg",
     project: "12",
+    featured: true
+  },
+  {
+    id: 27,
+    title: "Concept Advertisement Poster for Decathlon",
+    category: "Social Media",
+    description: "An athletic and high-energy concept poster for Decathlon, celebrating sport, vitality, and modern aesthetics. The design emphasizes clean typography, strong product integration, and a dynamic layout to evoke movement and determination.",
+    image: "https://i.postimg.cc/bvm5LHN2/Abir-Decathlon-V-2.jpg",
+    link: "https://i.postimg.cc/bvm5LHN2/Abir-Decathlon-V-2.jpg",
+    project: "13",
     featured: true
   }
 ];
@@ -222,7 +232,7 @@ export default function App() {
     return () => observer.disconnect();
   }, []);
 
-  const featuredOrder = [26, 13, 17, 22, 18, 16];
+  const featuredOrder = [27, 26, 13, 17, 22, 18, 16];
   const featuredItems = portfolioItems
     .filter(item => item.featured)
     .sort((a, b) => {
@@ -552,7 +562,7 @@ export default function App() {
                 {[
                   { name: "Instagram", url: "https://www.instagram.com/asherdesigns_official/", icon: <Instagram size={14} /> },
                   { name: "LinkedIn", url: "https://www.linkedin.com/in/abir-karmakar-b2b41b23a/", icon: <Linkedin size={14} /> },
-                  { name: "Behance", url: "#", icon: <ExternalLink size={14} /> }
+                  { name: "Behance", url: "https://www.behance.net/abir-designs", icon: <ExternalLink size={14} /> }
                 ].map((social) => (
                   <a
                     key={social.name}
