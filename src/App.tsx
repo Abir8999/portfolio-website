@@ -164,8 +164,12 @@ const portfolioItems = [
     title: "Concept Advertisement Poster for LIC",
     category: "Social Media",
     description: "A self-initiated concept poster exploring emotional storytelling in brand communication. It visualizes a father’s protective presence, highlighting how life insurance secures a family's future and educational aspirations through a clean, modern design.",
-    image: "https://i.postimg.cc/sDWbJN1p/LIC-poster-v-2.jpg",
-    link: "https://i.postimg.cc/sDWbJN1p/LIC-poster-v-2.jpg",
+    image: "https://i.postimg.cc/4yVPr8SK/LIC-poster-v-2.jpg",
+    carouselImages: [
+      { title: "Concept Advertisement Poster for LIC – Version 1", url: "https://i.postimg.cc/4yVPr8SK/LIC-poster-v-2.jpg" },
+      { title: "Concept Advertisement Poster for LIC – Version 2", url: "https://i.postimg.cc/sDWbJN1p/LIC-poster-v-2.jpg" }
+    ],
+    link: "https://i.postimg.cc/4yVPr8SK/LIC-poster-v-2.jpg",
     project: "12",
     featured: true
   },

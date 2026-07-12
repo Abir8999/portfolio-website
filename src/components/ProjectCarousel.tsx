@@ -16,6 +16,7 @@ interface ProjectCarouselProps {
 export default function ProjectCarousel({ images, projectTitle, onImageClick }: ProjectCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0); // -1 for left, 1 for right
+  const [aspectRatio, setAspectRatio] = useState<number | null>(null);
 
   const navigate = (newDirection: number) => {
     setDirection(newDirection);
@@ -48,7 +49,10 @@ export default function ProjectCarousel({ images, projectTitle, onImageClick }: 
   };
 
   return (
-    <div className="relative w-full aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/10 bg-neutral-900 group">
+    <div 
+      className="relative w-full overflow-hidden rounded-[2rem] border border-white/10 bg-neutral-900 group transition-all duration-500"
+      style={{ aspectRatio: aspectRatio ? `${aspectRatio}` : "4/5" }}
+    >
       {/* Slide transition */}
       <div className="absolute inset-0 select-none">
         <AnimatePresence initial={false} custom={direction} mode="wait">
@@ -72,17 +76,31 @@ export default function ProjectCarousel({ images, projectTitle, onImageClick }: 
               }
             }}
             onTap={() => onImageClick?.(currentIndex)}
-            className="absolute inset-0 w-full h-full cursor-grab active:cursor-grabbing select-none"
+            className="absolute inset-0 w-full h-full cursor-grab active:cursor-grabbing select-none flex items-center justify-center"
           >
+            {/* Ambient Blurred Background (renders subtly behind just in case of transition updates) */}
+            <img
+              src={images[currentIndex].url}
+              alt=""
+              referrerPolicy="no-referrer"
+              className="absolute inset-0 w-full h-full object-cover blur-2xl opacity-10 scale-105 pointer-events-none"
+            />
+            {/* Main Image */}
             <img
               src={images[currentIndex].url}
               alt={`${projectTitle} - ${images[currentIndex].title}`}
               referrerPolicy="no-referrer"
               draggable="false"
+              onLoad={(e) => {
+                const img = e.currentTarget;
+                if (img.naturalWidth && img.naturalHeight) {
+                  setAspectRatio(img.naturalWidth / img.naturalHeight);
+                }
+              }}
               className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700 pointer-events-none"
             />
             {/* Subtle Gradient Shadow */}
-            <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none" />
+            <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none z-20" />
           </motion.div>
         </AnimatePresence>
       </div>
