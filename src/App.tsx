@@ -5,7 +5,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, useScroll, useSpring, AnimatePresence } from "motion/react";
-import { Instagram, Linkedin, ExternalLink, ArrowRight, Mail, Layers, PenTool, MapPin, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { Instagram, Linkedin, ExternalLink, ArrowRight, Mail, Layers, PenTool, Figma, MapPin, X, ChevronLeft, ChevronRight } from "lucide-react";
 import ProjectCarousel from "./components/ProjectCarousel";
 
 const portfolioItems = [
@@ -499,14 +499,13 @@ export default function App() {
               <h2 className="text-4xl md:text-6xl font-bold uppercase tracking-tighter">Tools I Use</h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Photoshop */}
               <div className="p-10 rounded-[2rem] bg-white/5 border border-white/10 hover:border-white/20 transition-colors group reveal">
-                <div className="flex justify-between items-start mb-8">
-                  <div className="p-4 rounded-2xl bg-white/5 text-white group-hover:bg-white group-hover:text-black transition-colors">
+                <div className="mb-8">
+                  <div className="inline-flex p-4 rounded-2xl bg-white/5 text-white group-hover:bg-white group-hover:text-black transition-colors">
                     <Layers size={24} />
                   </div>
-                  <span className="text-[10px] uppercase tracking-widest px-3 py-1 rounded-full bg-white text-black font-black">Primary Tool</span>
                 </div>
                 <h3 className="text-2xl font-bold mb-4 uppercase tracking-tight">Adobe Photoshop</h3>
                 <p className="text-white/60 leading-relaxed font-light">
@@ -516,15 +515,27 @@ export default function App() {
 
               {/* Illustrator */}
               <div className="p-10 rounded-[2rem] bg-white/5 border border-white/10 hover:border-white/20 transition-colors group reveal reveal-delay-1">
-                <div className="flex justify-between items-start mb-8">
-                  <div className="p-4 rounded-2xl bg-white/5 text-white group-hover:bg-white group-hover:text-black transition-colors">
+                <div className="mb-8">
+                  <div className="inline-flex p-4 rounded-2xl bg-white/5 text-white group-hover:bg-white group-hover:text-black transition-colors">
                     <PenTool size={24} />
                   </div>
-                  <span className="text-[10px] uppercase tracking-widest px-3 py-1 rounded-full border border-white/20 text-white/40 font-bold">Secondary Tool</span>
                 </div>
                 <h3 className="text-2xl font-bold mb-4 uppercase tracking-tight">Adobe Illustrator</h3>
                 <p className="text-white/60 leading-relaxed font-light">
                   Used when needed for vector graphics, icons, and design elements.
+                </p>
+              </div>
+
+              {/* Figma */}
+              <div className="p-10 rounded-[2rem] bg-white/5 border border-white/10 hover:border-white/20 transition-colors group reveal reveal-delay-2">
+                <div className="mb-8">
+                  <div className="inline-flex p-4 rounded-2xl bg-white/5 text-white group-hover:bg-white group-hover:text-black transition-colors">
+                    <Figma size={24} />
+                  </div>
+                </div>
+                <h3 className="text-2xl font-bold mb-4 uppercase tracking-tight">Figma</h3>
+                <p className="text-white/60 leading-relaxed font-light">
+                  Used primarily for designing social media posters, multi-slide carousels, and structuring clean visual layouts.
                 </p>
               </div>
             </div>
